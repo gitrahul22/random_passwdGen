@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Random Password Generator</title>
+</head>
+<body>
+    
+   <div class="container">
+    <h1>Generate a<br><span>Random Password</span></h1>
+    <div class="display">
+        <input type="text" id="passwd" placeholder="Password">
+        <img src="images/copy.png" onclick="copy()">
+    </div>
+    <button onclick="createPasswd()" > <img src="images/generate.png">Generate Password</button>
+   </div>
+    <script>
+        let passwdt="";
+        const passWord=document.getElementById("passwd");
+        const length=12;
+        const upperc="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const lowerc="abcdefghijklmnopqrstuvwxyz";
+        const number="0123456789";
+        const symbs="@#!$%^&*()_{}}[]/><=-"
+        const allchar=upperc+lowerc+number+symbs;
+        function createPasswd(){
+            passwdt="";
+            passwdt+= upperc[Math.floor(Math.random()*upperc.length)];
+            passwdt+=lowerc[Math.floor(Math.random()*lowerc.length)];
+            passwdt+=number[Math.floor(Math.random()*number.length)];
+            passwdt+=symbs[Math.floor(Math.random()*symbs.length)];
+
+            while(length>passwdt.length){
+                passwdt+=allchar[Math.floor(Math.random()*allchar.length)]
+            }
+            passWord.value=passwdt;
+        }
+        function copy(){
+        passWord.select();
+        document.execCommand("copy");
+        document.execCommand("delete");
+        alert("Copied to ClipBoard");
+        }
+    </script>
+</body>
+</html>
